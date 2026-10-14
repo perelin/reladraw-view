@@ -1,0 +1,7 @@
+node app "Web app"
+node app.ui  "Interface"
+node app.api "API"  below app.ui
+
+node store "Database"  right of app  level with app
+
+edge app.api -> store  "queries"  from: right  to: left
