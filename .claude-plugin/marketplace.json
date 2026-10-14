@@ -1,0 +1,14 @@
+{
+  "name": "reladraw-view",
+  "description": "reladraw-view, a Claude Code mod",
+  "owner": {
+    "name": "Sebastian Patino-Lang"
+  },
+  "plugins": [
+    {
+      "name": "reladraw-view",
+      "source": "./",
+      "description": "Draws ```reladraw fenced blocks in Claude's replies as inline images (kitty graphics: kitty, Ghostty)"
+    }
+  ]
+}
