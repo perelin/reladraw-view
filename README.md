@@ -6,7 +6,7 @@ A Claude Code mod that draws ` ```reladraw ` code blocks in Claude's replies as 
 
 Claude Code already ships a built-in mod that does this for Mermaid: `cc-plugin-mermaid` turns ` ```mermaid ` blocks into box-drawing characters. reladraw-view is the same idea for reladraw, with one difference: reladraw only renders SVG, so the diagram is shown as a real picture via the kitty graphics protocol rather than as text.
 
-![A reladraw diagram as reladraw-view shows it: a "Web app" group holding "Interface" and "API", and an edge labelled "queries" from "API" to "Database"](docs/example.png)
+![A reladraw diagram in the light theme the mod uses: a "Web app" group holding "Interface" and "API", and an edge labelled "queries" from "API" to "Database"](docs/example.png)
 
 The source of that diagram, as Claude would write it in a reply:
 
