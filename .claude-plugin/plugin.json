@@ -1,0 +1,6 @@
+{
+  "name": "reladraw-view",
+  "version": "0.1.0",
+  "description": "Draws ```reladraw fenced blocks in Claude's replies as inline images (kitty graphics: kitty, Ghostty)",
+  "author": { "name": "Sebastian Patino-Lang" }
+}
