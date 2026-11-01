@@ -96,4 +96,4 @@ export const parseRenderOutput = (
 }
 
 export const cleanError = (stderr: string): string =>
-  stderr.trim().split('\n')[0]?.replace(/^\/dev\/stdin:(\d+):\s*/, 'line $1: ') || 'reladraw failed'
+  stderr.trim().split('\n')[0]?.replace(/^(?:\/dev\/stdin|\S+\.reladraw):(\d+):\s*/, 'line $1: ') || 'reladraw failed'
