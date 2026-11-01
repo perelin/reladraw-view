@@ -69,6 +69,7 @@ describe('helpers', () => {
     expect(cleanError('/dev/stdin:3: node "a": "x" is not a direction\n')).toBe(
       'line 3: node "a": "x" is not a direction',
     )
+    expect(cleanError('/home/u/.cache/reladraw-view/ab-0.21.0.reladraw:2: bad\n')).toBe('line 2: bad')
     expect(cleanError('')).toBe('reladraw failed')
   })
 })
