@@ -2,7 +2,7 @@
 
 A Claude Code mod that draws ` ```reladraw ` code blocks in Claude's replies as images, right in the terminal.
 
-[reladraw](https://github.com/reladraw/reladraw) is a text language for diagrams where you say where things go (`below`, `right of`, `level with`) instead of leaving the layout to an engine. It sits between Mermaid, which places everything for you, and draw.io, where you place everything by hand. reladraw is made by **Joe Walsh** ([@jpwalsh234](https://github.com/jpwalsh234)); many thanks to him for it. This mod only calls the reladraw command-line tool. It contains none of its code and is not affiliated with the reladraw project.
+[reladraw](https://github.com/reladraw/reladraw) is a text language for diagrams where you say where things go (`below`, `right of`, `even with`) instead of leaving the layout to an engine. It sits between Mermaid, which places everything for you, and draw.io, where you place everything by hand. reladraw is made by **Joe Walsh** ([@jpwalsh234](https://github.com/jpwalsh234)); many thanks to him for it. This mod only calls the reladraw command-line tool. It contains none of its code and is not affiliated with the reladraw project.
 
 Claude Code already ships a built-in mod that does this for Mermaid: `cc-plugin-mermaid` turns ` ```mermaid ` blocks into box-drawing characters. reladraw-view is the same idea for reladraw, with one difference: reladraw only renders SVG, so the diagram is shown as a real picture via the kitty graphics protocol rather than as text.
 
@@ -16,7 +16,7 @@ node app "Web app"
 node app.ui  "Interface"
 node app.api "API"  below app.ui
 
-node store "Database"  right of app  level with app
+node store "Database"  right of app (gap: 10)  even with app.api
 
 edge app.api -> store  "queries"  from: right  to: left
 ```
@@ -25,7 +25,7 @@ edge app.api -> store  "queries"  from: right  to: left
 ## Requirements
 
 - A terminal with the kitty graphics protocol: [Ghostty](https://ghostty.org) or [kitty](https://sw.kovidgoyal.net/kitty/). Elsewhere the mod shows a one-line placeholder instead of the picture.
-- The reladraw CLI: `npm install -g reladraw`. Any version works: the mod uses `reladraw render` where the CLI has it (after 0.16) and the older `reladraw <file>` form otherwise.
+- The reladraw CLI: `npm install -g reladraw`. Any version works: the mod uses `reladraw render` where the CLI has it (after 0.16) and the older `reladraw <file>` form otherwise. The diagram language itself changed in 0.17 (`level with` became `even with`, among others); the example below needs 0.17 or later.
 - `rsvg-convert` from librsvg: `brew install librsvg` (macOS) or your distribution's `librsvg2-bin`
 - Both are looked up on `PATH`, with `/opt/homebrew/bin` and `/usr/local/bin` added.
 
