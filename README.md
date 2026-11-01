@@ -25,7 +25,7 @@ edge app.api -> store  "queries"  from: right  to: left
 ## Requirements
 
 - A terminal with the kitty graphics protocol: [Ghostty](https://ghostty.org) or [kitty](https://sw.kovidgoyal.net/kitty/). Elsewhere the mod shows a one-line placeholder instead of the picture.
-- The reladraw CLI: `npm install -g reladraw`
+- The reladraw CLI: `npm install -g reladraw`. Any version works: the mod uses `reladraw render` where the CLI has it (after 0.16) and the older `reladraw <file>` form otherwise.
 - `rsvg-convert` from librsvg: `brew install librsvg` (macOS) or your distribution's `librsvg2-bin`
 - Both are looked up on `PATH`, with `/opt/homebrew/bin` and `/usr/local/bin` added.
 
@@ -84,7 +84,7 @@ Diagrams are rendered with reladraw's `light` theme. A diagram that names its ow
 
 ### Cache
 
-Rendered diagrams are kept in `~/Library/Caches/reladraw-view/` (a PNG and an SVG per diagram and theme) and reused across sessions. Delete the folder to clear it.
+Rendered diagrams are kept in `~/Library/Caches/reladraw-view/` on macOS and `${XDG_CACHE_HOME:-~/.cache}/reladraw-view/` elsewhere (a PNG and an SVG per diagram, theme and reladraw version) and reused across sessions. Upgrading reladraw renders each diagram again on its next appearance. Delete the folder to clear it.
 
 ## How it works
 
@@ -98,7 +98,7 @@ Rendered diagrams are kept in `~/Library/Caches/reladraw-view/` (a PNG and an SV
 - **Timestamp mods:** a reply that starts with the code block, under a mod that writes a timestamp in front of every reply (such as message-timestamps), loses the fence: the timestamp lands on the opening line. A sentence before the block avoids it.
 - **No light/dark switching:** the theme is fixed and does not follow Claude Code's `/theme`.
 - **Terminal only:** desktop, VS Code and mobile show the code block.
-- **macOS paths:** the cache folder and the extra `PATH` entries follow macOS conventions; on Linux the cache ends up in `~/Library/Caches` all the same.
+- **Linux:** rendering works with reladraw 0.21 (checked on Ubuntu); showing the picture there is untested and needs a kitty-graphics terminal as on macOS.
 - Built on Claude Code's function-hook plugin API, which is in early access and may change between releases.
 
 ## Development
@@ -115,6 +115,12 @@ claude plugin test .
 ```
 
 The tests cover splitting a reply into text and diagrams, sizing the picture in terminal cells, and the render hook with `process.run` mocked: code block first, picture once rendered, reladraw's error under the source, nothing for a block still streaming.
+
+The render script itself runs outside that sandbox, against fake `reladraw` and `rsvg-convert` binaries for both CLI forms:
+
+```
+node --test test/render-script.mjs
+```
 
 ## License
 
